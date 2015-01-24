@@ -236,8 +236,14 @@ if ( is_user_logged_in() ) {
                 data:{
                     action: 'item_sort', // Tell WordPress how to handle this ajax request
                     order: t.sortable('toArray').toString(), // Passes ID's of list items in  1,3,2 format
-                    pageid: <?php if (is_home()) {echo 1;}else if (is_category()){echo get_query_var('cat');}else{echo get_the_ID();} ?>,
-                    getid: <?php if(isset($_GET['id'])){echo $_GET['id'];}else{echo 0;} ?>
+                    pageid: <?php 
+	                    if (is_home()) {echo 1;}
+	                    else if (is_category()){
+		                    echo lang_object_id(get_query_var('cat'),"category","nl");
+		                }else{
+		                    echo lang_object_id(get_the_ID(),"post","nl");
+			            } ?>,
+                    getid: <?php if(isset($_GET['id'])){echo lang_object_id($_GET['id'],"post","nl");}else{echo 0;} ?>
                 },
                 success: function(response) {
                     $('#loading-animation').hide(); // Hide the loading animation
@@ -314,7 +320,7 @@ if ( is_user_logged_in() ) {
     			<?php wp_dropdown_categories('show_option_all=Kies Categorie&exclude=1'); ?>
     		</form>
     	</div>
-    	<div id="fblink">Volg ons op: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
+    	<div id="fblink"><?php _e("Follow us on","goedsnik"); ?>: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
     </div>
     </div>
     </div></div>

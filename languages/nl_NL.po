@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Goedsnik Theme\n"
+"POT-Creation-Date: 2015-01-25 00:24+0100\n"
+"PO-Revision-Date: 2015-01-25 00:25+0100\n"
+"Last-Translator: Satoshi Shiraishi <sachoco@gmail.com>\n"
+"Language-Team: Satoshi Shiraishi <sachoco@gmail.com>\n"
+"Language: Dutch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../functions copy.php:45 ../functions.php:60
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ../functions copy.php:212 ../functions.php:325
+#, php-format
+msgid "Cortos de %s"
+msgstr ""
+
+#: ../header.php:323
+msgid "Follow us on"
+msgstr "Volg ons op"

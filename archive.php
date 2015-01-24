@@ -3,10 +3,18 @@
     <div id="grid-content">
     	
 <?php 
-$thiscat = get_query_var('cat');
 global $wpdb;
+
+/*
+$thiscat = get_query_var('cat');
 $current_page = intval($post->ID);
 $get_id=intval($_GET['id']);
+*/
+
+$thiscat = lang_object_id(get_query_var('cat'),"category","nl");
+$current_page = lang_object_id(intval($post->ID),"post","nl");
+$get_id = lang_object_id($_GET['id'],"post","nl");
+
 if(!isset($get_id)){$get_id=0;}
 $wpdb->sortable_lookup = $table_prefix.'sortable_lookup'; 
 $sortablelookup = $wpdb->prefix.'sortable_lookup'; 
@@ -14,7 +22,7 @@ $result = $wpdb->get_results("SELECT sorted_array FROM sortable_lookup WHERE sor
 $sorted=unserialize($result[0]->sorted_array);
 
 $sortedarray = explode(",",$sorted);
-
+$sortedarray = lang_object_ids($sortedarray, "post");
 
 echo(get_query_var('cat')).'<br/>';
 
@@ -24,6 +32,7 @@ echo($current_page);
 $allarray=array();
 $tempargs = array('post_type' => 'post','cat'=>$thiscat,'orderby'=>'menu_order','order'=>'ASC');
 $current_post = get_category_link($thiscat);
+
 $the_query = new WP_Query($tempargs);
 if ($the_query->have_posts()) :
 	while ($the_query->have_posts()) : $the_query->the_post(); 
@@ -183,11 +192,14 @@ $the_query = new WP_Query($args);
 		
 
  		 $do_not_duplicate = $post->ID; 
+ 		 
+		$this_id =  lang_object_id($post->ID,"post","nl");
+
 //if($_GET['id']!=$post->ID){ 
 ?>
 
 
-		<div id="<?php echo $post->ID; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 					<!--
 <div class="divgripper">
@@ -208,7 +220,7 @@ $the_query = new WP_Query($args);
 				
 					if(parseInt(jQuery(window).width())<=1450){
 					
-					jQuery("#<?php echo $post->ID; ?> .img_link img").attr({
+					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
 						"width":"<?php echo $small_thumbnail[1]; ?>",
 						"height":"<?php echo $small_thumbnail[2]; ?>",
 						
@@ -236,7 +248,7 @@ $the_query = new WP_Query($args);
 				
 					if(parseInt(jQuery(window).width())<=1450){
 					
-					jQuery("#<?php echo $post->ID; ?> .img_link img").attr({
+					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
 						"src":"<?php echo $small_thumbnail[0]; ?>",
 						"width":"<?php echo $small_thumbnail[1]; ?>",
 						"height":"<?php echo $small_thumbnail[2]; ?>",
@@ -265,7 +277,7 @@ $the_query = new WP_Query($args);
 			
 			<?php 
 			}
-			$the_category_list = the_excluded_category(array(1));
+			$the_category_list = the_excluded_category(array(1,15));
 			if(strlen($the_category_list)>0){
 			?>
 			
@@ -336,12 +348,14 @@ if ($the_query->have_posts()) :
 		
 
  		 $do_not_duplicate = $post->ID; 
+ 		$this_id =  lang_object_id($post->ID,"post","nl");
+
 			//if($post->ID!=$thispost){
  		 ?>
 		 	
 	
 		
-		<div id="<?php echo $post->ID; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 					<!--
 <div class="divgripper">
@@ -362,7 +376,7 @@ if ($the_query->have_posts()) :
 				
 					if(parseInt(jQuery(window).width())<=1450){
 					
-					jQuery("#<?php echo $post->ID; ?> .img_link img").attr({
+					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
 						"src":"<?php echo $small_thumbnail[0]; ?>",
 						"width":"<?php echo $small_thumbnail[1]; ?>",
 						"height":"<?php echo $small_thumbnail[2]; ?>",
@@ -388,7 +402,7 @@ if ($the_query->have_posts()) :
 			
 			<?php 
 			}
-			$the_category_list = the_excluded_category(array(1));
+			$the_category_list = the_excluded_category(array(1,15));
 			if(strlen($the_category_list)>0){
 			?>
 			

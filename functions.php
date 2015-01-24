@@ -1,4 +1,6 @@
 <?php
+load_theme_textdomain( 'goedsnik', get_template_directory() . '/languages' );
+
 register_nav_menu('main_menu', 'Main Menu');
 register_nav_menu('mobile_menu', 'Mobile Menu');
 add_post_type_support( 'post', 'page-attributes' );
@@ -342,6 +344,36 @@ function root_relative_permalinks($input) {
 add_filter( 'the_permalink', 'root_relative_permalinks' );
 
 
+function lang_object_ids($ids_array, $type, $lang=null) {
+ if(function_exists('icl_object_id')) {
+  $res = array();
+  foreach ($ids_array as $id) {
+	  if($lang){
+		  $xlat = icl_object_id($id,$type,false,$lang);
+	  }else{
+		  $xlat = icl_object_id($id,$type,false);
+	  }
+   
+   if(!is_null($xlat)) $res[] = $xlat;
+  }
+  return $res;
+ } else {
+  return $ids_array;
+ }
+}
+function lang_object_id($id, $type="post",$lang=null) {
+ if(function_exists('icl_object_id')) {
 
+  if($lang){
+	  $res = icl_object_id($id,$type,true,$lang);
+  }else{
+	  $res = icl_object_id($id,$type,true);
+  }
+   
+  return $res;
+ } else {
+  return $id;
+ }	
+}
 
 ?>

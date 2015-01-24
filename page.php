@@ -1,9 +1,10 @@
-<? get_header(); ?>
+<?php get_header(); ?>
 
     <div id="grid-content" class="pagegrid">
     	
 <?php 
-$thispost = get_the_ID();
+
+$thispost = lang_object_id(get_the_ID(),"post","nl");
 
 $args = array('post_type' => 'page');
 $the_query = new WP_Query($args);
