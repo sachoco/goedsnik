@@ -1,17 +1,23 @@
-<? get_header(); ?>
+<?php get_header(); ?>
 
     <div id="grid-content">
     	
 <?php 
-$thiscat = get_query_var('cat');
 global $wpdb;
+/*
+$thiscat = get_query_var('cat');
 $current_page = intval(get_the_ID());
+*/
+$thiscat = lang_object_id(get_query_var('cat'),"category","nl");
+$current_page = lang_object_id(get_the_ID(),"post","nl");
 $get_id=intval($_GET['id']);
 if(!isset($get_id)){$get_id=0;}
 /*
 $wpdb->sortable_lookup = $table_prefix.'sortable_lookup'; 
 $sortablelookup = $wpdb->prefix.'sortable_lookup'; 
 */
+// echo "test page: ". $current_page .", id: ".$get_id;
+
 $result = $wpdb->get_results("SELECT sorted_array FROM sortable_lookup WHERE sorted_page_id = $current_page AND sorted_get_id = $get_id");
 $sorted=unserialize($result[0]->sorted_array);
 //echo $current_page;
@@ -21,6 +27,8 @@ substr($sorted,1);
 }
 */
 $sortedarray = explode(",",$sorted);
+$sortedarray = lang_object_ids($sortedarray, "post");
+
 //echo "<pre>"; print_r($sorted); echo "</pre>";
 $allarray=array();
 $tempargs = array('post_type' => 'post','cat'=>1,'orderby'=>'menu_order','order'=>'ASC');
@@ -29,6 +37,7 @@ $current_post = get_permalink();
 $the_query = new WP_Query($tempargs);
 if ($the_query->have_posts()) :
 	while ($the_query->have_posts()) : $the_query->the_post(); 
+	
 		array_push($allarray,$post->ID);
 	endwhile; 
 endif;
@@ -196,11 +205,12 @@ if($beensorted==true){
  		// if (in_category("Homepage",$do_not_duplicate)){
  		 
 			//if($post->ID!=$thispost){
+			$this_id =  lang_object_id($post->ID,"post","nl");
  		 ?>
 		 	
 	
 		
-		<div id="<?php echo $post->ID; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
 			<?php// if (is_user_logged_in()) { ?>
 				<!--
 	<div class="divgripper">
@@ -221,7 +231,7 @@ if($beensorted==true){
 				
 					if(parseInt(jQuery(window).width())<=1450){
 					
-					jQuery("#<?php echo $post->ID; ?> .img_link img").attr({
+					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
 						"src":"<?php echo $small_thumbnail[0]; ?>",
 						"width":"<?php echo $small_thumbnail[1]; ?>",
 						"height":"<?php echo $small_thumbnail[2]; ?>",
@@ -250,7 +260,7 @@ if($beensorted==true){
 			
 			<?php 
 			//}			
-			$the_category_list = the_excluded_category(array(1));
+			$the_category_list = the_excluded_category(array(1,15));
 			if(strlen($the_category_list)>0){
 			?>
 			
@@ -320,6 +330,8 @@ if ($the_query->have_posts()) :
 		
 
  		 $do_not_duplicate = $post->ID; 
+		$this_id =  lang_object_id($post->ID,"post","nl");
+
  		 //if (in_category("Homepage",$do_not_duplicate)){
  		 
 			//if($post->ID!=$thispost){
@@ -327,7 +339,7 @@ if ($the_query->have_posts()) :
 		 	
 	
 		
-		<div id="<?php echo $post->ID; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 				<!--
 	<div class="divgripper">
@@ -348,7 +360,7 @@ if ($the_query->have_posts()) :
 				
 					if(parseInt(jQuery(window).width())<=1450){
 					
-					jQuery("#<?php echo $post->ID; ?> .img_link img").attr({
+					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
 						"src":"<?php echo $small_thumbnail[0]; ?>",
 						"width":"<?php echo $small_thumbnail[1]; ?>",
 						"height":"<?php echo $small_thumbnail[2]; ?>",
@@ -374,7 +386,7 @@ if ($the_query->have_posts()) :
 			
 			<?php 
 		//	}
-			$the_category_list = the_excluded_category(array(1));
+			$the_category_list = the_excluded_category(array(1,15));
 			if(strlen($the_category_list)>0){
 			?>
 			
