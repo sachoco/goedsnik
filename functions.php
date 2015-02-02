@@ -376,4 +376,20 @@ function lang_object_id($id, $type="post",$lang=null) {
  }	
 }
 
+function languages_list(){
+    $languages = icl_get_languages('skip_missing=0&orderby=KEY&order=DIR');
+    if(!empty($languages)){
+        echo '<div id="language_list">';
+        $i=0;
+        foreach($languages as $l){
+            if(!$l['active']) echo '<a href="'.$l['url'].'">';
+            echo $l['language_code'];
+            if(!$l['active']) echo '</a>';
+            if($i==0) echo "/";
+            $i++;
+        }
+        echo '</ul></div>';
+    }
+}
+
 ?>

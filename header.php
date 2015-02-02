@@ -137,7 +137,7 @@ jQuery(document).ready(function(){
 	}
 */
  	if($(window).width()<=500){ 	
-    	jQuery("#logo_inner img,#logo_inner").css({"visibility":"visible"});
+//     	jQuery("#logo_inner img,#logo_inner").css({"visibility":"visible"});
  	}
  	else{
 	 	jQuery("#grid-content div").each(function(){
@@ -156,6 +156,7 @@ jQuery(document).ready(function(){
 		//alert(numCols);
 		  	
 	
+/*
     	var logowidth=parseInt(jQuery("#logo_inner img").width());
     	var logoheight=parseInt(jQuery("#logo_inner img").height());
     	var logoratio=logoheight/logowidth;
@@ -174,6 +175,7 @@ jQuery(document).ready(function(){
 	    	jQuery("#logo_inner img,#logo_inner").css({"height":newlogoheight,"visibility":"visible"});
 		}
 		jQuery("#fblink").css({"margin-left":resultingGridWidth-75+"px"});
+*/
 
     	
 
@@ -320,7 +322,10 @@ if ( is_user_logged_in() ) {
     			<?php wp_dropdown_categories('show_option_all=Kies Categorie&exclude=1'); ?>
     		</form>
     	</div>
+    	<div class="top-link"><a href="http://goedsnik.com/Goedsnik-corporate-portfolio.pdf" target="_blank">Portfolio PDF</a></div>
     	<div id="fblink"><?php _e("Follow us on","goedsnik"); ?>: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
+    	<?php //do_action('icl_language_selector'); ?>
+    	<?php languages_list(); ?>
     </div>
     </div>
     </div></div>

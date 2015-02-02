@@ -52,7 +52,7 @@ body {
 	background-color:#FFF;
 }
 #logo_inner img{
-	visibility: hidden;
+/* 	visibility: hidden; */
 }
 .navwrap{
 	position: relative;
@@ -166,6 +166,7 @@ background-repeat:no-repeat;
 	/* width:100%; */
 	}
 
+/*
 @media screen and (max-width:1800px) and (min-width: 1700px) {
   #grid-content {
 	width:1670px;
@@ -243,6 +244,7 @@ background-repeat:no-repeat;
 	width:470px;
 	}
 }
+*/
 
 
 
@@ -331,15 +333,15 @@ a{
 #fblink{
 	height:15px;
 	width:100px;
+/*
 	position:absolute;
 	float:left;
 	margin:10px 13px 0px 1126px;
-	/*
-position:relative;
-	float:right;
-	margin:10px 13px 0px 0px;
-	vertical-align: middle;
 */
+	position:relative;
+	float:right;
+	margin:5px 13px 0px 0px;
+	vertical-align: middle;
 }
 #fblink a img{
 	vertical-align:middle;
