@@ -38,7 +38,7 @@ body {
 }
 #logo{
 	overflow:hidden;
-	height:90px;
+/* 	height:90px; */
 	margin-top:0px;
 	padding-top:30px;
 	border-top:none;
@@ -47,12 +47,14 @@ body {
 }
 #logo_inner{
 	overflow:hidden;
-	height:80px;
+/* 	height:80px; */
 	position:relative;
 	background-color:#FFF;
 }
 #logo_inner img{
 /* 	visibility: hidden; */
+	width: 100%;
+	height: auto;
 }
 .navwrap{
 	position: relative;
@@ -340,7 +342,7 @@ a{
 */
 	position:relative;
 	float:right;
-	margin:5px 13px 0px 0px;
+	margin:0px 50px 0px 0px;
 	vertical-align: middle;
 }
 #fblink a img{

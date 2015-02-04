@@ -116,8 +116,8 @@ jQuery(document).ready(function(){
    
 	var colwidth = 204;
 	var gridWidth = jQuery('#grid-content').width();
-	var numCols = Math.floor(gridWidth/200);
-	var resultingGridWidth=numCols*200;
+	var numCols = Math.floor((gridWidth+2)/175);
+	var resultingGridWidth=numCols*175;
 	
 	var windowWidth=parseInt(jQuery(window).width());
 	var smallwin =false;
@@ -185,6 +185,7 @@ jQuery(document).ready(function(){
 	   if(lastposttop>windowheight){
 			$(".upbtn").css('display','block');
 	   }
+
    
    }
    
@@ -323,9 +324,11 @@ if ( is_user_logged_in() ) {
     		</form>
     	</div>
     	<div class="top-link"><a href="http://goedsnik.com/Goedsnik-corporate-portfolio.pdf" target="_blank">Portfolio PDF</a></div>
-    	<div id="fblink"><?php _e("Follow us on","goedsnik"); ?>: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
+    	<div id="topmenu-right">
+    	<div id="fblink"><?php _e("Follow us on","goedsnik"); ?>: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img height="15" width="15" src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
     	<?php //do_action('icl_language_selector'); ?>
     	<?php languages_list(); ?>
+    	</div>
     </div>
     </div>
     </div></div>

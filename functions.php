@@ -382,9 +382,8 @@ function languages_list(){
         echo '<div id="language_list">';
         $i=0;
         foreach($languages as $l){
-            if(!$l['active']) echo '<a href="'.$l['url'].'">';
-            echo $l['language_code'];
-            if(!$l['active']) echo '</a>';
+            if(!$l['active']){ echo '<a href="'.$l['url'].'">'.$l["language_code"].'</a>'; }
+	        else{ echo '<span class="active">'.$l["language_code"].'</span>'; }
             if($i==0) echo "/";
             $i++;
         }

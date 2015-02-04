@@ -21,12 +21,23 @@ body{
 
 #language_list {
 	float: right;
-	margin: 5px 13px 0px 0px;
+	margin: 0px 13px 0px 0px;
+	text-transform: uppercase;
+}
+#language_list .active {
+	text-decoration: underline;
 }
 
 .top-link {
 	padding: 5px 0 0 27px;
 	float: left;
+}
+#topmenu-right {
+	position:absolute;
+	float:left;
+	margin:5px 13px 0px 1126px;
+	width: 220px;	
+	visibility: hidden;
 }
 
 @media only screen and (max-width: 1280px) {

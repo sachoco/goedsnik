@@ -234,12 +234,37 @@ jQuery('.current_content object,.current_content embed').each(function(){
 	 
     	
     	var t = $('#grid-content');
-	if($(window).width()>500){ 
+if($(window).width()>500){ 
+/*
     t.masonry({
         itemSelector:        '.masonry',
         isResizable:        true,
-        columnWidth: colwidth
-    })
+        columnWidth: colwidth,
+        isFitWidth: true
+    });
+*/
+// add layout event, triggered after container has been sized
+var _postLayout = Masonry.prototype._postLayout;
+Masonry.prototype._postLayout = function() {
+  _postLayout.apply( this, arguments );
+  this.emitEvent( 'layout', [ this ] );
+};
+
+    var msnry = new Masonry( '#grid-content', {
+        itemSelector:        '.masonry',
+        isResizable:        true,
+        columnWidth: colwidth,
+        isFitWidth: true,
+        transitionDuration: 0,
+        isInitLayout: false    
+    } );
+//     msnry.on( 'layoutComplete', onLayout );
+    msnry.on( 'layout', onLayout );
+	function onLayout() {
+		jQuery("#topmenu-right").css({"margin-left":jQuery('#grid-content').width()-180+"px","visibility":"visible"});
+		
+	}
+	msnry.layout();
  }
 
   });
