@@ -159,7 +159,7 @@ $the_query = new WP_Query($args);
 			
 			<div class="space"></div>
             <div class="font_size_small">
-             	<span class="categorie_txt">Categorie:</span> <?php echo $the_category_list; ?>
+             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
             </div>
 			<?php
 			}
@@ -266,7 +266,7 @@ if($beensorted==true){
 			
 			<div class="space"></div>
             <div class="font_size_small">
-             	<span class="categorie_txt">Categorie:</span> <?php echo $the_category_list; ?>
+             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
             </div>
 			<?php
 			}
@@ -392,7 +392,7 @@ if ($the_query->have_posts()) :
 			
 			<div class="space"></div>
             <div class="font_size_small">
-             	<span class="categorie_txt">Categorie:</span> <?php echo $the_category_list; ?>
+             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
             </div>
 			<?php
 			}

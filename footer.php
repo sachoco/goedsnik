@@ -259,11 +259,11 @@ Masonry.prototype._postLayout = function() {
         isInitLayout: false    
     } );
 //     msnry.on( 'layoutComplete', onLayout );
-    msnry.on( 'layout', onLayout );
 	function onLayout() {
 		jQuery("#topmenu-right").css({"margin-left":jQuery('#grid-content').width()-180+"px","visibility":"visible"});
 		
 	}
+    msnry.on( 'layout', onLayout );
 	msnry.layout();
  }
 

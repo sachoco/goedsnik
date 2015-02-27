@@ -215,10 +215,12 @@ console.log($("#ons").offset().top);
 		
 			    <div class="menu-main-menu-container">
 			    	<ul id="menu-main-menu" class="menu">
-			    		<li id="menu-item-16" class="menu-item left"><a id="onsBtn" href="#ons">Wie zijn wij</a></li>
+			    		<li id="menu-item-16" class="menu-item left"><a id="onsBtn" href="#ons"><?php _e("About us","goedsnik"); ?></a></li>
 			    		<li id="menu-item-16" class="menu-item center"><a id="contactBtn" href="#contact">Contact</a></li>
-			    		<li id="menu-item-fb" class="menu-item right"><a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank">Volg ons op: <img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></li>
+			    		<li id="menu-item-fb" class="menu-item right"><a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><?php _e("Follow us on","goedsnik"); ?>: <img src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></li>
+						<li id="menu-item-lang" class="menu-item right"><?php languages_list(); ?></li>
 					</ul>
+					
 					<div class="clear"></div> 
 				</div>
 			</div>

@@ -305,7 +305,7 @@ if ( is_user_logged_in() ) {
 	<div id="logo">
 		<a href="<?php bloginfo('url'); ?>" target="_self">
 			<div id="logo_inner">
-		    	<img src="<?php echo $options['logo']; ?>" height="79" />
+		    	<img src="<?php if(ICL_LANGUAGE_CODE=="en"&&$options['logo_en']){ echo $options['logo_en']; }else{ echo $options['logo']; } ?>" height="79" />
 	        </div>
         </a>
     </div>
@@ -320,10 +320,13 @@ if ( is_user_logged_in() ) {
     <?php //wp_nav_menu( array('theme_location' => 'mobile_menu' )); ?>
     	<div class="navbox">
     		<form action="<?php bloginfo('url'); ?>" method="get">
-    			<?php wp_dropdown_categories('show_option_all=Kies Categorie&exclude=1'); ?>
+    			<?php 
+	    			$arg = 'show_option_all='.__("Select Category","goedsnik").'&exclude=1';
+	    			wp_dropdown_categories($arg); 	
+	    		?>
     		</form>
     	</div>
-    	<div class="top-link"><a href="http://goedsnik.com/Goedsnik-corporate-portfolio.pdf" target="_blank">Portfolio PDF</a></div>
+    	<div class="top-link"><a href="<?php if(ICL_LANGUAGE_CODE=="en"){ echo "http://www.goedsnik.com/Goedsnik-portfolio-ENGLISH.pdf"; }else{ echo "http://www.goedsnik.com/Goedsnik-portfolio-NEDERLANDS.pdf"; } ?>" target="_blank">Portfolio PDF</a></div>
     	<div id="topmenu-right">
     	<div id="fblink"><?php _e("Follow us on","goedsnik"); ?>: <a href="https://www.facebook.com/goedsnik.ontwerp?fref=ts" target="_blank"><img height="15" width="15" src="<?php bloginfo('template_url'); ?>/images/fb_link.jpg" /></a></div>
     	<?php //do_action('icl_language_selector'); ?>

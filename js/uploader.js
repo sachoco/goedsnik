@@ -9,6 +9,13 @@ jQuery('#upload_logo_image_button').click(function() {
  return false;
 });
 
+jQuery('#upload_logo_en_image_button').click(function() {
+ formfield = jQuery('#upload_logo_image').attr('name');
+ tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+ thisid='#upload_logo_en_image';
+ return false;
+});
+
 jQuery('#upload_image_button').click(function() {
  formfield = jQuery('#upload_image').attr('name');
  tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');

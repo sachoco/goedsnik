@@ -102,6 +102,7 @@ function options_admin_init(){
 	
 	add_settings_field('topbarimg', 'Top Bar:', 'topbar_img_wp', 'theme_options', 'theme_main');
 	add_settings_field('logo', 'Logo:', 'logo_img_wp', 'theme_options', 'theme_main');
+	add_settings_field('logo_en', 'Logo for English site:', 'logo_img_en_wp', 'theme_options', 'theme_main');
 	add_settings_field('theme_text_string', 'Background Color:', 'bgcolor_string', 'theme_options', 'theme_main');
 	add_settings_field('fontfamily', 'Font Family:', 'font_family_string', 'theme_options', 'theme_main');
 	add_settings_field('fontsize', 'Font Size:', 'font_size_string', 'theme_options', 'theme_main');
@@ -144,6 +145,11 @@ function logo_img_wp() {
 	echo '<br/><img src="'.$options['logo'].'" />';
 }
 
+function logo_img_en_wp() {  
+	$options = get_option('myoption_group');
+	echo '<input id="upload_logo_en_image" type="text" size="36" name="myoption_group[logo_en]" value="'.$options['logo_en'].'" /><input id="upload_logo_en_image_button" type="button" value="Upload Image" /><br />Enter an URL or upload an image for the banner.';
+	echo '<br/><img src="'.$options['logo_en'].'" />';
+}
 
 function bgcolor_string() {
 	$options = get_option('myoption_group');
@@ -377,7 +383,7 @@ function lang_object_id($id, $type="post",$lang=null) {
 }
 
 function languages_list(){
-    $languages = icl_get_languages('skip_missing=0&orderby=KEY&order=DIR');
+    $languages = icl_get_languages('skip_missing=0&orderby=code&order=desc');
     if(!empty($languages)){
         echo '<div id="language_list">';
         $i=0;
