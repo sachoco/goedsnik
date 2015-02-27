@@ -4,7 +4,7 @@
             text: 'LineBreak',
             icon: false,
             onclick: function() {
-                editor.insertContent('<br class="none" /> ');
+                editor.insertContent('<br class="none" />\n');
             }
         });
     });
