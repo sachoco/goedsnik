@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php wp_title('&laquo;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
 <meta name="keywords" content="Katie McGonigal, Stella Akse, Goedsnik, grafisch ontwerp">
-
+<meta name=viewport content="width=device-width, initial-scale=1">
 <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php bloginfo('template_url'); ?>/custom_styles.css" rel="stylesheet" type="text/css" />
 <?

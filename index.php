@@ -1,7 +1,7 @@
 <?php 
 	require_once("include/Mobile_Detect.php");
 	$detect = new Mobile_Detect;
-	if ( $detect->isMobile() ) {
+	if ( $detect->isMobile() && !$detect->isIpad() ) {
 		include("page_mobile.php"); 
 	}else{
 ?>	
