@@ -267,6 +267,110 @@ Masonry.prototype._postLayout = function() {
 	msnry.layout();
  }
 
+
+<?php if ( is_user_logged_in() ) { ?>
+	 
+	 
+	 
+	var t = $('#grid-content');
+	 
+   function getSortOrder() { var children = document.getElementById('grid-content').childNodes; var sort = ""; for(x in children){ sort = sort + children[x].id + ","; } return sort; }
+    
+    
+    
+    t.sortable({
+        forcePlaceholderSize: true,
+        handle: '.img_link',
+        items: '.post,.page',
+        placeholder: 'card-sortable-placeholder masonry',
+        tolerance: 'pointer',
+        
+        start:  function(event, ui) {            
+                 //console.log(ui); 
+            ui.item.addClass('dragging').removeClass('masonry');
+            if ( ui.item.hasClass('bigun') ) {
+                 ui.placeholder.addClass('bigun');
+                 }
+                 	msnry.reloadItems();
+                 	msnry.layout();
+                   // ui.item.parent().masonry('reload')
+                },
+        change: function(event, ui) {
+        			msnry.reloadItems();
+        			msnry.layout();
+                   // ui.item.parent().masonry('reload');
+                },
+        stop:   function(event, ui) { 
+        			
+                   ui.item.removeClass('dragging').addClass('masonry');
+                   msnry.reloadItems();
+                   msnry.layout();
+                   // ui.item.parent().masonry('reload');
+        },
+       
+        update: function(event, ui) {
+            jQuery('#loading-animation').show(); // Show the animate loading gif while waiting
+			
+            opts = {
+                url: ajaxurl, // ajaxurl is defined by WordPress and points to /wp-admin/admin-ajax.php
+                type: 'POST',
+                async: true,
+                cache: false,
+                dataType: 'json',
+                data:{
+                    action: 'item_sort', // Tell WordPress how to handle this ajax request
+                    order: t.sortable('toArray').toString(), // Passes ID's of list items in  1,3,2 format
+                    pageid: <?php 
+	                    if (is_home()) {echo 1;}
+	                    else if (is_category()){
+		                    echo lang_object_id(get_query_var('cat'),"category","nl");
+		                }else{
+		                    echo lang_object_id(get_the_ID(),"post","nl");
+			            } ?>,
+                    getid: <?php if(isset($_GET['id'])){echo lang_object_id($_GET['id'],"post","nl");}else{echo 0;} ?>
+                },
+                success: function(response) {
+                    $('#loading-animation').hide(); // Hide the loading animation
+                   console.log(t.sortable('toArray').toString());
+                    return; 
+                },
+                error: function(xhr,textStatus,e) {  // This can be expanded to provide more information
+                    //alert(e);
+                     alert('There was an error saving the updates');
+                    $('#loading-animation').hide(); // Hide the loading animation
+                    return; 
+                }
+            };
+            $.ajax(opts);
+        }
+   });
+	 
+	 var masonwidth=0;
+	
+
+    	if (jQuery(".currentpost_colfull")[0]){
+   			var secondtop = jQuery("#grid-content div.post:nth-child(2)").css("top");
+    		jQuery("#grid-content div.post,#grid-content div.page").each(function(){
+		    	if(jQuery(this).css("top")==secondtop){
+		    		var thispad = parseInt(jQuery(this).css("padding-left"))+parseInt(jQuery(this).css("padding-right"));
+		    		var thiswidth = parseInt(jQuery(this).css("width"))+thispad;
+		    		masonwidth=masonwidth+thiswidth-4;
+		    	}
+    		});
+    		jQuery(".currentpost_colfull").css("width",masonwidth+"px");
+   			
+		}
+		else{
+    		jQuery("#grid-content div.post,#grid-content div.page").each(function(){
+		    	if(jQuery(this).css("top")=="0px"){
+		    		var thispad = parseInt(jQuery(this).css("padding-left"))+parseInt(jQuery(this).css("padding-right"));
+		    		var thiswidth = parseInt(jQuery(this).css("width"))+thispad;
+		    		masonwidth=masonwidth+thiswidth;
+		    	}
+    		});
+    
+    	}
+    	<? } ?>
   });
 </script>
 

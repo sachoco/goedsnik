@@ -62,6 +62,7 @@ foreach($allarray as $child){
 else{
 	$args = array('post_type' => 'post','orderby'=>'menu_order','order'=>'ASC');
 }
+// var_dump($args);
 /*
 echo '<div style="position:absolute;z-index:20;width:50px;background-color:white;">'; 
 foreach($sortedarray as $child){echo $child."<br/><br/>";}
