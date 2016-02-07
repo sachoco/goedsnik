@@ -204,8 +204,7 @@ if($beensorted==true){
 
  		 $do_not_duplicate = $post->ID; 
  		// if (in_category("Homepage",$do_not_duplicate)){
- 		 
-			//if($post->ID!=$thispost){
+			if($post->ID!=$thispost):
 			$this_id =  lang_object_id($post->ID,"post","nl");
  		 ?>
 		 	
@@ -246,9 +245,7 @@ if($beensorted==true){
 					}
 				});
 			</script>
-			
-			<!-- <img src="<?php echo $thumbnail[0]; ?>"  /> -->
-			
+						
 			<?php 
 				if (get_field("is_animated_gif")) {
 					$default_attr = array(
@@ -265,15 +262,8 @@ if($beensorted==true){
 			<?php endif;?>
 			<h4><a href="<?php the_permalink();?>" target="_self"><?php the_title(); ?></a></h4>
 		
-			<?php the_excerpt();
-			//if (strlen(get_the_excerpt())>0){
-			
-			?>
-		<!--
-	<div style="margin:0px 0px 10px 0px;"><a href="<?php the_permalink();?>" target="_self" class="lees_meer">(lees meer)
-			
-			</a></div>
--->
+			<?php the_excerpt(); ?>
+
 			
 			<?php 
 			//}			
@@ -281,10 +271,10 @@ if($beensorted==true){
 			if(strlen($the_category_list)>0){
 			?>
 			
-			<div class="space"></div>
-            <div class="font_size_small">
-             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
-            </div>
+				<div class="space"></div>
+	            <div class="font_size_small">
+	             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
+	            </div>
 			<?php
 			}
 			?>
@@ -292,7 +282,7 @@ if($beensorted==true){
 		
 		</div>
 		<?php 
-	
+			endif;
 		}
 		
 		$tester++;
@@ -339,40 +329,30 @@ else{
 
 
 if ($the_query->have_posts()) :
-		
-		while ($the_query->have_posts()) : 
+	while ($the_query->have_posts()) : 
 		$the_query->the_post(); 
 		
 		
 
- 		 $do_not_duplicate = $post->ID; 
+ 		$do_not_duplicate = $post->ID; 
 		$this_id =  lang_object_id($post->ID,"post","nl");
 
  		 //if (in_category("Homepage",$do_not_duplicate)){
  		 
-			//if($post->ID!=$thispost){
- 		 ?>
-		 	
-	
-		
+		if($post->ID!=$thispost):
+?>	
 		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
-			<?php //if (is_user_logged_in()) { ?>
-				<!--
-	<div class="divgripper">
-						<img src="<?php bloginfo("template_url"); ?>/images/divgripper.jpg" height="15" />
-					</div>
--->
+
+			<?php 
+			if (has_post_thumbnail() ) : 
 			
-			<? //} ?>
-			<?php if (has_post_thumbnail() ) : 
-			
-			$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
-			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
-			if (get_field("is_animated_gif")) {
-				$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-				$small_thumbnail[1] = "100%";
-				$small_thumbnail[2] = "";
-			}
+				$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
+				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
+				if (get_field("is_animated_gif")) {
+					$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+					$small_thumbnail[1] = "100%";
+					$small_thumbnail[2] = "";
+				}
 
 			?>
 			<div style="width:100%;text-align:center">
@@ -411,31 +391,25 @@ if ($the_query->have_posts()) :
 			<h4><a href="<?php the_permalink();?>" target="_self"><?php the_title(); ?></a></h4>
 		
 			<?php the_excerpt(); 
-		//	if (strlen(get_the_excerpt())>0){
-			
-			?>
-			<!-- <div style="margin:0px 0px 10px 0px;"><a href="<?php the_permalink();?>" target="_self" class="lees_meer">(lees meer)</a></div> -->
-		
-			
-			<?php 
-		//	}
+
 			$the_category_list = the_excluded_category(array(1,15));
 			if(strlen($the_category_list)>0){
 			?>
 			
-			<div class="space"></div>
-            <div class="font_size_small">
-             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
-            </div>
+				<div class="space"></div>
+	            <div class="font_size_small">
+	             	<span class="categorie_txt"><?php _e("Category","goedsnik"); ?>:</span> <?php echo $the_category_list; ?>
+	            </div>
 			<?php
 			}
+			
 			?>
 			
 		
 		</div>
 
 <?php //} 
-
+endif;
 endwhile; endif; 
 if($arebricks==false){
 ?>
