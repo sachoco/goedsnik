@@ -6,7 +6,10 @@
 	}else{
 ?>	
 <?php get_header(); ?>
+<div id="grid-container">
     <div id="grid-content">
+    	<div class="grid-sizer"></div>
+
 <?php 
 global $wpdb;
 $current_page = intval(get_the_ID());
@@ -105,7 +108,13 @@ $the_query = new WP_Query($args);
 			<?php if (has_post_thumbnail() ) : 
 			$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
-			
+			if (get_field("is_animated_gif")) {
+				$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+				$small_thumbnail[1] = "100%";
+				$small_thumbnail[2] = "";
+			}
+
+
 			
 /*
 echo "<pre>";
@@ -117,31 +126,44 @@ echo "</pre>";
 			<script type="text/javascript">
 				jQuery(document).ready(function(){
 				
-					if(parseInt(jQuery(window).width())<=1450){
-					if(parseInt(jQuery(window).width())>500){
-					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
-						"src":"<?php echo $small_thumbnail[0]; ?>",
-						"width":"<?php echo $small_thumbnail[1]; ?>",
-						"height":"<?php echo $small_thumbnail[2]; ?>",
-						
-					});
-					}
-					else{
-						
-					jQuery("#<?php echo $this_id; ?> .img_link img").attr({
-						"src":"<?php echo $thumbnail[0]; ?>",
-						"width":"100%",
-						"height":""
-						
-					});
-					}
-					}
+					// if(parseInt(jQuery(window).width())<=1450){
+					// 	if(parseInt(jQuery(window).width())>500){
+					// 		jQuery("#<?php echo $this_id; ?> .img_link img").attr({
+					// 			"src":"<?php echo $small_thumbnail[0]; ?>",
+					// 			"width":"<?php echo $small_thumbnail[1]; ?>",
+					// 			"height":"<?php echo $small_thumbnail[2]; ?>",
+								
+					// 		});
+					// 	}
+					// 	else{
+							
+					// 		jQuery("#<?php echo $this_id; ?> .img_link img").attr({
+					// 			"src":"<?php echo $thumbnail[0]; ?>",
+					// 			"width":"100%",
+					// 			"height":""
+								
+					// 		});
+					// 	}
+					// }
+
+					
 				});
 			</script>
 			
 			<!-- <img src="<?php echo $thumbnail[0]; ?>"  /> -->
 			
-			<?php the_post_thumbnail('homepage-thumb'); ?>
+			<?php 
+				if (get_field("is_animated_gif")) {
+					$default_attr = array(
+						'class' => "animated-gif"
+					);
+					the_post_thumbnail('full', $default_attr); 
+
+				}else{
+
+					the_post_thumbnail('homepage-thumb'); 
+				}
+			?>
 			</a></div>
 			<?php endif;?>
 			<div class="excerptcontent">
@@ -192,6 +214,7 @@ echo "</pre>";
 
 
 				
+	</div>
 	</div>
     <? get_footer(); ?>
     <?php } ?>

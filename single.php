@@ -1,7 +1,8 @@
 <?php get_header(); ?>
-
+<div id="grid-container">
     <div id="grid-content">
-    	
+    	<div class="grid-sizer"></div>
+
 <?php 
 global $wpdb;
 /*
@@ -223,6 +224,11 @@ if($beensorted==true){
 			
 			$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
+			if (get_field("is_animated_gif")) {
+				$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+				$small_thumbnail[1] = "100%";
+				$small_thumbnail[2] = "";
+			}
 			?>
 			<div style="width:100%;text-align:center">
 			<a class="img_link" href="<?php the_permalink();?>" target="_self" rel="<?php echo $small_thumbnail[0];  ?>">
@@ -243,7 +249,18 @@ if($beensorted==true){
 			
 			<!-- <img src="<?php echo $thumbnail[0]; ?>"  /> -->
 			
-			<?php the_post_thumbnail('homepage-thumb'); ?>
+			<?php 
+				if (get_field("is_animated_gif")) {
+					$default_attr = array(
+						'class' => "animated-gif"
+					);
+					the_post_thumbnail('full', $default_attr); 
+
+				}else{
+
+					the_post_thumbnail('homepage-thumb'); 
+				}
+			?>
 			</a></div>
 			<?php endif;?>
 			<h4><a href="<?php the_permalink();?>" target="_self"><?php the_title(); ?></a></h4>
@@ -285,7 +302,6 @@ if($beensorted==true){
 endwhile; endif; 
 if($arebricks==false){
 ?>
-
 
 <div id="brick1" class='bottombrick post masonry'></div>
 <div id="brick2" class='bottombrick post masonry'></div>
@@ -352,6 +368,12 @@ if ($the_query->have_posts()) :
 			
 			$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
+			if (get_field("is_animated_gif")) {
+				$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+				$small_thumbnail[1] = "100%";
+				$small_thumbnail[2] = "";
+			}
+
 			?>
 			<div style="width:100%;text-align:center">
 			<a class="img_link" href="<?php the_permalink();?>" target="_self" rel="<?php echo $small_thumbnail[0];  ?>">
@@ -372,7 +394,18 @@ if ($the_query->have_posts()) :
 			
 			<!-- <img src="<?php echo $thumbnail[0]; ?>"  /> -->
 			
-			<?php the_post_thumbnail('homepage-thumb'); ?>
+			<?php 
+				if (get_field("is_animated_gif")) {
+					$default_attr = array(
+						'class' => "animated-gif"
+					);
+					the_post_thumbnail('full', $default_attr); 
+
+				}else{
+
+					the_post_thumbnail('homepage-thumb'); 
+				}
+			?>
 			</a></div>
 			<?php endif;?>
 			<h4><a href="<?php the_permalink();?>" target="_self"><?php the_title(); ?></a></h4>
@@ -451,6 +484,6 @@ if($arebricks==false){
 
 
 
-
+	</div>
 	</div>
     <?php get_footer(); ?>

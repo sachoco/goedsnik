@@ -18,6 +18,7 @@ function my_jquery_enqueue() {
 <!--<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.js"></script>-->
 <?php wp_head(); ?>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/masonry.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/imagesloaded.pkgd.min.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery-ui-1.10.2.custom.min.js"></script>
 <style type="text/css">
 <?php 
