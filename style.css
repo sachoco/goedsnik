@@ -302,7 +302,7 @@ background-repeat:no-repeat;
 	/*max-width:1382px;*/
 	overflow:hidden;
 	/*width:96%;*/
-	width: 100% !important;
+	width: calc(100% - 4px) !important;
 	box-sizing: border-box;
 	padding: 9px 21px 20px 21px;
 }
@@ -397,7 +397,7 @@ div.bigun {
 }
 .current_content img{
 	display:block;
-	width: 100%;
+	max-width: 100%;
 	height: auto;
 }
 
