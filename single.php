@@ -210,7 +210,7 @@ if($beensorted==true){
 		 	
 	
 		
-		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class(array( 'masonry', 'thumb' )); ?>>
 			<?php// if (is_user_logged_in()) { ?>
 				<!--
 	<div class="divgripper">
@@ -341,7 +341,7 @@ if ($the_query->have_posts()) :
  		 
 		if($post->ID!=$thispost):
 ?>	
-		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class(array( 'masonry', 'thumb' )); ?>>
 
 			<?php 
 			if (has_post_thumbnail() ) : 

@@ -85,13 +85,13 @@ jQuery(document).ready(function(){
    		jQuery("#grid-content").css({"margin-left":"-2px"});
    		}
   	 }
-	 jQuery("#grid-content div.currentpost").css("width","479px");
-	 jQuery("#grid-content div.currentpost_col2").css("width","275px");
-	 jQuery("#grid-content div.currentpost_col3").css("width","479px");
-	 jQuery("#grid-content div.currentpost_col4").css("width","654px");
-	 jQuery("#grid-content div.currentpost_col5").css("width","829px");
-	 jQuery("#grid-content div.currentpost_col6").css("width","974px");
-	 jQuery("#grid-content div.currentpost_col7").css("width","1139px");
+	 // jQuery("#grid-content div.currentpost").css("width","479px");
+	 // jQuery("#grid-content div.currentpost_col2").css("width","275px");
+	 // jQuery("#grid-content div.currentpost_col3").css("width","479px");
+	 // jQuery("#grid-content div.currentpost_col4").css("width","654px");
+	 // jQuery("#grid-content div.currentpost_col5").css("width","829px");
+	 // jQuery("#grid-content div.currentpost_col6").css("width","974px");
+	 // jQuery("#grid-content div.currentpost_col7").css("width","1139px");
 	 
 	 realcolwidth=colwidth-7.25;
 	 
@@ -148,7 +148,7 @@ jQuery(document).ready(function(){
 	var numCols = Math.floor(gridWidth/colwidth);
 	var resultingGridWidth=numCols*realcolwidth;
 	//alert(colwidth);
-	jQuery("#grid-content div.currentpost_colfull").css("width",resultingGridWidth+"px");
+	// jQuery("#grid-content div.currentpost_colfull").css("width",resultingGridWidth+"px");
 	 
 	var currentheight=parseInt(jQuery('.activemason').height());
 	var heightdiff=0;
@@ -272,6 +272,9 @@ Masonry.prototype._postLayout = function() {
 		msnry.layout();
 	});
  }
+jQuery(window).resize(function(){
+	setTimeout(function(){ msnry.layout(); }, 100);
+});
 
 
 <?php if ( is_user_logged_in() ) { ?>
@@ -378,6 +381,9 @@ Masonry.prototype._postLayout = function() {
     	}
     	<? } ?>
   });
+
+
+
 </script>
 
 

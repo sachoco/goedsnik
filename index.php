@@ -96,7 +96,7 @@ $the_query = new WP_Query($args);
 	 		if(function_exists('icl_object_id') && ICL_LANGUAGE_CODE != "nl") $this_id = icl_object_id($this_id,"post",true,"nl");
  		 ?>
 		
-		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class(array( 'masonry', 'thumb' )); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 				<!--
 	<div class="divgripper">
