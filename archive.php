@@ -1,7 +1,8 @@
 <? get_header(); //echo get_query_var('cat');?>
+<div id="grid-container">
 
     <div id="grid-content">
-    	
+    	<div class="grid-sizer"></div>
 <?php 
 global $wpdb;
 
@@ -199,7 +200,7 @@ $the_query = new WP_Query($args);
 ?>
 
 
-		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class(array( 'masonry', 'thumb' )); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 					<!--
 <div class="divgripper">
@@ -355,7 +356,7 @@ if ($the_query->have_posts()) :
 		 	
 	
 		
-		<div id="<?php echo $this_id; ?>" <?php post_class('masonry'); ?>>
+		<div id="<?php echo $this_id; ?>" <?php post_class(array( 'masonry', 'thumb' )); ?>>
 			<?php //if (is_user_logged_in()) { ?>
 					<!--
 <div class="divgripper">
@@ -457,6 +458,6 @@ if($arebricks==false){
 
 
 
-
+	</div>
 	</div>
     <? get_footer(); ?>

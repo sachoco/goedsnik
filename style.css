@@ -400,6 +400,9 @@ div.bigun {
 	max-width: 100%;
 	height: auto;
 }
+#current {
+	z-index: 99999;
+}
 
 
 /*
@@ -621,6 +624,11 @@ position: absolute;
 }
 .grid-sizer {
 	width: 204px;
+}
+#grid-content div.post.thumb {
+	/*opacity: 0;*/
+	/*transition: 0.5s opacity;*/
+	/*display: none;*/
 }
 @media only screen and (max-width: 1450px) {
  	#grid-content div.post.thumb {
