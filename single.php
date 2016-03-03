@@ -68,7 +68,6 @@ $beensorted=false;
 //echo "<pre>"; print_r($thiscat); echo "</pre>";
 
 $thispost = get_the_ID();
-
 $current_post = get_permalink();
 $the_query = new WP_Query($args);
 	if ($the_query->have_posts()) :
@@ -460,4 +459,5 @@ if($arebricks==false){
 
 	</div>
 	</div>
+
     <?php get_footer(); ?>

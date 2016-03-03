@@ -241,6 +241,11 @@ $the_query = new WP_Query($args);
 			
 			$small_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-15thumb' );
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'homepage-thumb' );
+			if (get_field("is_animated_gif")) {
+				$small_thumbnail = $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+				$small_thumbnail[1] = "100%";
+				$small_thumbnail[2] = "";
+			}
 			?>
 			<div style="width:100%;text-align:center">
 			<a class="img_link" href="?id=<?php echo $post->ID;?>" target="_self" rel="<?php echo $small_thumbnail[0];  ?>">

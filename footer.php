@@ -270,7 +270,6 @@ Masonry.prototype._postLayout = function() {
 
 	$('#grid-content').imagesLoaded().progress( function() {
 		msnry.layout();
-		// $('#grid-content div.post.thumb').css('opacity',1);
 	});
  }
 jQuery(window).resize(function(){
